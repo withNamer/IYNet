@@ -33,7 +33,7 @@ class conv_block(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(ch_in, ch_out, kernel_size=3, stride=1, padding=1, bias=True),
             nn.BatchNorm2d(ch_out),
-            nn.ReLU(inplace=True),  # 服了，居然是leakyrelu和relu的区别
+            nn.ReLU(inplace=True), 
             # nn.Dropout(dropout_p),
             nn.Conv2d(ch_out, ch_out, kernel_size=3, stride=1, padding=1, bias=True),
             nn.BatchNorm2d(ch_out),
@@ -196,7 +196,7 @@ class Fusion_Attention_M2(nn.Module):
 
         # m_batchsize, C, height, width = x.size()
 
-        # x_query1 = self.Attention_query1(x)     # 这里做一个自注意力的事情怎么样？
+        # x_query1 = self.Attention_query1(x)     
         # x_key1 = self.Attention_key1(x)
         
         # proj_query1 = x_query1.view(m_batchsize, C, -1)
@@ -1089,7 +1089,7 @@ class MFwaveNet2(nn.Module):  # all_channel
 #         self.R_Conv5 = conv_block(ch_in=256, ch_out=512, dropout_p=0.5)
 
 #         self.RS_Up5 = up_conv(ch_in=512, ch_out=256)
-#         self.RS_Up_conv5 = conv_block(ch_in=512 + 256*4, ch_out=256, dropout_p=0.0)  # 注意这里可以改进融合的深度
+#         self.RS_Up_conv5 = conv_block(ch_in=512 + 256*4, ch_out=256, dropout_p=0.0)  
 #         self.RS_Up4 = up_conv(ch_in=256, ch_out=128)
 #         self.RS_Up_conv4 = conv_block(ch_in=256 + 128*4, ch_out=128, dropout_p=0.0)
 #         self.RS_Up3 = up_conv(ch_in=128, ch_out=64)
@@ -1118,7 +1118,7 @@ class MFwaveNet2(nn.Module):  # all_channel
 
 #         # Mixup network
 #         self.M_Maxpool = nn.MaxPool2d(kernel_size=2, stride=2)
-#         self.M_Conv1 = conv_block(ch_in=in_channels * 2, ch_out=64, dropout_p=0.05) # 这里甚至有dropout的额度捏
+#         self.M_Conv1 = conv_block(ch_in=in_channels * 2, ch_out=64, dropout_p=0.05) 
 #         self.M_Conv2 = conv_block(ch_in=64, ch_out=128, dropout_p=0.1)
 #         self.M_Conv3 = conv_block(ch_in=128, ch_out=256, dropout_p=0.2)
 #         self.M_Conv4 = conv_block(ch_in=256, ch_out=512, dropout_p=0.3)
