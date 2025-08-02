@@ -36,7 +36,7 @@ def init_seeds(seed):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path_model', default='/ldap_shared/home/s_fsw/wavelet/checkpoints/LA/MFwaveNet_3D-l=0.05-e=400-s=50-g=0.5-b=1-cw=0.2-w=20-100-db2-0.0-0.4-0.0-0.4/best_MF_Jc_0.8877.pth')
+    parser.add_argument('-p', '--path_model', default='/ldap_shared/home/xxx/wavelet/checkpoints/LA/MFwaveNet_3D-l=0.05-e=400-s=50-g=0.5-b=1-cw=0.2-w=20-100-db2-0.0-0.4-0.0-0.4/best_MF_Jc_0.8877.pth')
     parser.add_argument('--dataset_name', default='LA', help='P-CT, LiTS')
     parser.add_argument('--threshold', default=0.5)
     parser.add_argument('-b', '--batch_size', default=1, type=int)
