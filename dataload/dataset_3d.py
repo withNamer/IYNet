@@ -50,7 +50,7 @@ class dataset_it(Dataset):
                 subjects_dataset=self.dataset_1,
                 max_length=queue_length,
                 samples_per_volume=samples_per_volume,
-                # sampler=UniformSampler(patch_size),  # 这个地方没改过来
+                # sampler=UniformSampler(patch_size),  
                 sampler=LabelSampler(patch_size),
                 num_workers=num_workers,
                 shuffle_subjects=shuffle_subjects,
@@ -61,7 +61,7 @@ class dataset_it(Dataset):
                 subjects_dataset=self.dataset_1,
                 max_length=queue_length,
                 samples_per_volume=samples_per_volume,
-                sampler=UniformSampler(patch_size),  # 这个地方没改过来
+                sampler=UniformSampler(patch_size),  
                 # sampler=LabelSampler(patch_size),
                 num_workers=num_workers,
                 shuffle_subjects=shuffle_subjects,
