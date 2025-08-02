@@ -9,7 +9,7 @@ from medpy.metric.binary import dc, jc, asd, hd95
 
 # def evaluate(y_scores, y_true, interval=0.02, voxelspacing=None):
 #     y_scores = torch.softmax(y_scores, dim=1)
-#     y_scores = y_scores[:, 1, ...].cpu().detach().numpy()  # 保持原始形状
+#     y_scores = y_scores[:, 1, ...].cpu().detach().numpy()  
 #     y_true = y_true.data.cpu().numpy()
 
 #     thresholds = np.arange(0, 0.9, interval)
@@ -21,7 +21,7 @@ from medpy.metric.binary import dc, jc, asd, hd95
 #     for indy, threshold in enumerate(thresholds):
 #         y_pred = (y_scores > threshold).astype(np.int8)
 
-#         # 计算 Jaccard 和 Dice
+#         
 #         # sum_area = (y_pred + y_true)
 #         # tp = float(np.sum(sum_area == 2))
 #         # union = np.sum(sum_area == 1)
@@ -30,7 +30,7 @@ from medpy.metric.binary import dc, jc, asd, hd95
 #         jaccard[indy] = jc(y_pred, y_true)
 #         dice[indy] = dc(y_pred, y_true)
 
-#         # 计算 ASD 和 HD95（保留原始形状）
+#         
 #         # try:
 #         asd_values[indy] = asd(y_pred, y_true)
 #         hd95_values[indy] = hd95(y_pred, y_true)
