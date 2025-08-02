@@ -86,13 +86,13 @@ class dataset_XNetv2(Dataset):
             mask = Image.open(mask_path).convert('L')         
             mask = np.array(mask)
             # print(mask.shape)
-            mask = (mask > 128).astype(np.uint8) # 这也是防止255导致损失函数出错
+            mask = (mask > 128).astype(np.uint8) 
 
         # transform = A.Compose([A.RandomBrightnessContrast(brightness_limit=0.2, contrast_limit=0.2, p=0.5),
         #                        ], additional_targets={'image': 'LL',
         #                                               'image': 'LH', 
         #                                               'image': 'HL',
-        #                                               'image': 'HH'})  # 声明额外目标为掩码
+        #                                               'image': 'HH'})  
         # extra_trans = transform(image=img,)
         # img = extra_trans['image']
 
@@ -111,7 +111,7 @@ class dataset_XNetv2(Dataset):
         #         img = zoom(img, (max_len / w, ratio * max_len / h, 1), order=0)
         #         mask = zoom(mask, (max_len / w, ratio * max_len / h), order=0)
 
-        # h, w, _ = img.shape  # 获取高度和宽度（忽略通道数）
+        # h, w, _ = img.shape 
         # max_wh = max(w, h)
         # max_len = 640
 
@@ -132,7 +132,7 @@ class dataset_XNetv2(Dataset):
         LL, (LH, HL, HH) = pywt.dwt2(img, self.wavelet_type, axes=(0, 1))
 
         LL_2 = LL ** 2
-        H_2 = LH ** 2 + HL ** 2 + HH ** 2  # 不要使用np.power，太慢了
+        H_2 = LH ** 2 + HL ** 2 + HH ** 2  
 
         LL = (LL - np.amin(LL, (0, 1))) / (np.amax(LL, (0, 1)) - np.amin(LL, (0, 1))) * 1
         LH = (LH - np.amin(LH, (0, 1))) / (np.amax(LH, (0, 1)) - np.amin(LH, (0, 1))) * 1
@@ -140,41 +140,41 @@ class dataset_XNetv2(Dataset):
         HH = (HH - np.amin(HH, (0, 1))) / (np.amax(HH, (0, 1)) - np.amin(HH, (0, 1))) * 1
 
         LL_2 = (LL_2 - np.amin(LL_2, (0, 1))) / (np.amax(LL_2, (0, 1)) - np.amin(LL_2, (0, 1))) * 0.5
-        H_2 = (H_2 - np.amin(H_2, (0, 1))) / (np.amax(H_2, (0, 1)) - np.amin(H_2, (0, 1))) * 0.5 # 能量化
+        H_2 = (H_2 - np.amin(H_2, (0, 1))) / (np.amax(H_2, (0, 1)) - np.amin(H_2, (0, 1))) * 0.5 
 
-        # LL_2 = np.power(LL / 4.0, 4)  # 这儿需不需要归一化呢？？？？？
+        # LL_2 = np.power(LL / 4.0, 4) 
 
         H_ = HL + LH + HH
         H_ = (H_ - np.amin(H_, (0, 1))) / (np.amax(H_, (0, 1)) - np.amin(H_, (0, 1))) * 1
 
-        # H_2 = np.power(H_ / 4.0, 4)  # 这样更有倒数的意思，应该来说高频会引进更多的噪声，所以这样也许更好；
+        # H_2 = np.power(H_ / 4.0, 4) 
 
         L_alpha = random.uniform(self.alpha[0], self.alpha[1])
         H_beta = random.uniform(self.beta[0], self.beta[1])
 
-        L = LL + L_alpha * H_ #+ L_alpha * H_2  # 我就说，这个有点类似于指数的泰勒展开了
+        L = LL + L_alpha * H_ #+ L_alpha * H_2  
         L = (L - np.amin(L, (0, 1))) / (np.amax(L, (0, 1)) - np.amin(L, (0, 1))) * 1
 
         H = H_ + H_beta * LL #+ H_beta * LL_2
         H = (H - np.amin(H, (0, 1))) / (np.amax(H, (0, 1)) - np.amin(H, (0, 1))) * 1
 
         LH_gamma = random.uniform(self.gamma[0], self.gamma[1])
-        LH_ = LH_gamma * LL + (1 - LH_gamma) * H_  # + LH_gamma * LL_2 + (1 - LH_gamma) * H_2  # 这儿我觉得应该不能改，得保持纯净
+        LH_ = LH_gamma * LL + (1 - LH_gamma) * H_  # + LH_gamma * LL_2 + (1 - LH_gamma) * H_2  
         # LH_ = (1-LH_gamma) * LL + LH_gamma * H
         LH_ = (LH_ - np.amin(LH_, (0, 1))) / (np.amax(LH_, (0, 1)) - np.amin(LH_, (0, 1))) * 1
 
         L = (L_alpha + 0.6) * L # + (L_alpha - self.alpha[0] - (self.alpha[1] - self.alpha[0]) / 2.0) / 10  # (0.2, 0.6)  0.5
         H = (H_beta + 0.6) * H # + (H_beta - self.beta[0] - (self.beta[1] - self.beta[0]) / 2.0) / 10   # (0.2, 0.6)  0.5
-        LH_ = (LH_gamma + 0.0) * LH_  # (0.6,0.8) 0.0 这是最好的
+        LH_ = (LH_gamma + 0.0) * LH_  
 
         # L = 0.7 * L  # (0.2, 0.6)  0.5
         # H = 0.7 * H   # (0.2, 0.6)  0.5
-        # LH_ = 0.7 * LH_  # (0.6,0.8) 0.0 这是最好的
+        # LH_ = 0.7 * LH_  # (0.6,0.8) 0.0 
 
         # end_time = time.time()
 
         # elapsed = end_time - start_time 
-        # print(f"耗时: {elapsed:.4f} 秒") # 这个的速度实在是太慢了，很不舒适
+        # print(f"耗时: {elapsed:.4f} 秒") 
 
         # scale_1 = random.uniform(self.scale[0], self.scale[1])
         # scale_2 = random.uniform(self.scale[0], self.scale[1])
@@ -183,7 +183,7 @@ class dataset_XNetv2(Dataset):
         # H = scale_2 * H
         # LH_ = scale_3 * LH_
 
-        # 先做strong，然后weak增强即可
+        
         # print(self.augmentation_strong_1 != None)
         # print(self.augmentation_strong_1)
         if self.augmentation_strong_1 is not None:
@@ -231,8 +231,8 @@ class dataset_XNetv2(Dataset):
             # mask = Image.open(mask_path)#.convert('L')         
             # mask = np.array(mask)
             # # print(mask.shape)
-            # mask = (mask > 128).astype(np.uint8) # 这也是防止255导致损失函数出错
-            # mask[mask == 255] = 1 # 这里居然没有改动，也许这不是最终版的代码
+            # mask = (mask > 128).astype(np.uint8) 
+            # mask[mask == 255] = 1 
 
 
             if self.augmentation_strong_1 is not None:
@@ -303,7 +303,7 @@ class dataset_XNetv2(Dataset):
                                                )
                 img_1 = normalize_1['image']
                 # img_strong1 = normalize_1['image_strong']
-                # img_1 = (LH_gamma + 0.2) * img_1  # 将这里也改变一下吧，失败的改变
+                # img_1 = (LH_gamma + 0.2) * img_1  
                 # L = normalize_1['L']
                 # H = normalize_1['H']
                 # img_1 = ToTensorV2()(image=img_1)['image']
