@@ -149,7 +149,7 @@ if __name__ == '__main__':
         data_transform_1=data_transforms['val'],
         data_normalize_1=data_normalize,
         wavelet_type=args.wavelet_type,
-        alpha=args.val_alpha,  # 这个地方可能是懒得写了，我给写上吧
+        alpha=args.val_alpha,  
         beta=args.val_beta, 
         gamma=args.val_gamma,
         scale=args.val_scale,
