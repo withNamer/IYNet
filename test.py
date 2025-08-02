@@ -36,7 +36,7 @@ def init_seeds(seed):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path_model', default='/ldap_shared/home/s_fsw/XNetv2/checkpoints/EPFL/EPFL/MFwavelet-l=0.5-e=300-s=50-g=0.5-b=4-uw=0.5-w=20-20-80/best_XNetv2_Jc_0.8171.pth')
+    parser.add_argument('-p', '--path_model', default='/ldap_shared/home/xxx/IYNet/checkpoints/EPFL/EPFL/MFwavelet-l=0.5-e=300-s=50-g=0.5-b=4-uw=0.5-w=20-20-80/best_IYNet_Jc_0.8171.pth')
     parser.add_argument('--dataset_name', default='EPFL', help='GlaS, CREMI')
     parser.add_argument('--if_mask', default=True)
     parser.add_argument('--threshold', default=0.50)
@@ -136,7 +136,7 @@ if __name__ == '__main__':
                 mask_test = data['mask']
                 # from PIL import Image
                 # print(name_test)
-                # mask_path = os.path.join("/ldap_shared/home/s_fsw/wavelet/dataset/EPFL/val/mask", name_test[0])
+                # mask_path = os.path.join("/ldap_shared/home/xxx/wavelet/dataset/EPFL/val/mask", name_test[0])
                 # a = np.array(Image.open(mask_path))
                 # a = (a > 128).astype(np.uint8)
                 # import cv2
@@ -211,11 +211,11 @@ if __name__ == '__main__':
             # img_volume = np.zeros((mask_list_test_.shape), dtype=np.uint8)
             # mask_volume = np.zeros((mask_list_test_.shape), dtype=np.uint8)
             # for idx, i in enumerate(name_list_test):
-            #     mask_path = os.path.join("/ldap_shared/home/s_fsw/wavelet/dataset/EPFL/val/mask", i)
+            #     mask_path = os.path.join("/ldap_shared/home/xxx/wavelet/dataset/EPFL/val/mask", i)
             #     a = np.array(Image.open(mask_path).resize((256, 256), Image.NEAREST))
             #     mask_volume[idx] = (a > 128)
             # for idx, i in enumerate(name_list_test):
-            #     pred_path = os.path.join("/ldap_shared/home/s_fsw/wavelet/seg_pred/EPFL/best_XNetv2_Jc_0.8335", i)
+            #     pred_path = os.path.join("/ldap_shared/home/xxx/wavelet/seg_pred/EPFL/best_XNetv2_Jc_0.8335", i)
             #     img_volume[idx] = np.array(Image.open(pred_path))
             
             # print(jc(img_volume, mask_volume))
