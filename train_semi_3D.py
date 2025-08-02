@@ -51,7 +51,7 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--step_size', default=50, type=int)
     parser.add_argument('-l', '--lr', default=0.05, type=float)
     parser.add_argument('-g', '--gamma', default=0.5, type=float)
-    parser.add_argument('-u', '--unsup_weight', default=3, type=float)  # 哦豁，这里有所改动
+    parser.add_argument('-u', '--unsup_weight', default=3, type=float)  
     parser.add_argument('--loss', default='dice', type=str)
     parser.add_argument('-w', '--warm_up_duration', default=20)
     parser.add_argument('--momentum', default=0.9, type=float)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('--val_beta', default=[0.6, 0.6])
     parser.add_argument('--val_gamma', default=[0.8, 0.8])
 
-    parser.add_argument('-i', '--display_iter', default=1, type=int)  # 这里肯定不是我改的，man
+    parser.add_argument('-i', '--display_iter', default=1, type=int)  
     parser.add_argument('-n', '--network', default='MFwaveNet_3D', type=str)
     parser.add_argument('--local_rank', default=-1, type=int)
     parser.add_argument('--rank_index', default=0, help='0, 1, 2, 3')
@@ -166,7 +166,7 @@ if __name__ == '__main__':
 
     # L H augmentation
     L_H_aug = T.Compose([T.Resize(cfg['PATCH_SIZE']), 
-                        #  T.ZNormalization(masking_method=cfg['NORMALIZE'])  # 更改了这个地方
+                        #  T.ZNormalization(masking_method=cfg['NORMALIZE'])  
                          ])
 
     # Train & Val
