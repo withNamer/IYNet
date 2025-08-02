@@ -195,7 +195,7 @@ class Fusion_Attention_M2(nn.Module):
 
         # m_batchsize, C, height, width = x.size()
 
-        # x_query1 = self.Attention_query1(x)     # 这里做一个自注意力的事情怎么样？
+        # x_query1 = self.Attention_query1(x)    
         # x_key1 = self.Attention_key1(x)
         
         # proj_query1 = x_query1.view(m_batchsize, C, -1)
