@@ -25,7 +25,7 @@ from models.getnetwork import get_network
 from dataload.dataset_2d import imagefloder_XNetv2
 from warnings import simplefilter
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "7"  # 0和1这两张卡决不能用，用了就掉卡
+os.environ["CUDA_VISIBLE_DEVICES"] = "7"  
 simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     parser.add_argument('--dataset_name', default='EPFL', help='CREMI, ISIC-2017, GlaS')
     parser.add_argument('--sup_mark', default='100', help='100')
     parser.add_argument('-b', '--batch_size', default=8, type=int)
-    parser.add_argument('-e', '--num_epochs', default=400, type=int)  # 为什么这里又影响了结果？？
+    parser.add_argument('-e', '--num_epochs', default=400, type=int)  
     parser.add_argument('-s', '--step_size', default=50, type=int)
     parser.add_argument('-l', '--lr', default=0.5, type=float)
     parser.add_argument('-g', '--gamma', default=0.5, type=float)
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     parser.add_argument('--momentum', default=0.9, type=float)
     parser.add_argument('--wd', default=-5, type=float, help='weight decay pow')
     parser.add_argument('--wavelet_type', default='db2', help='haar, db2, bior1.5, bior2.4, coif1, dmey')
-    parser.add_argument('--train_alpha', default=[0.0, 0.4])  # 注意在0.4,0.8的时候得到了最好的结果0.8891
+    parser.add_argument('--train_alpha', default=[0.0, 0.4])  
     parser.add_argument('--train_beta', default=[0.0, 0.4])
     parser.add_argument('--train_gamma', default=[0.6, 0.8])
     parser.add_argument('--val_alpha', default=[0.2, 0.2])
@@ -189,7 +189,7 @@ if __name__ == '__main__':
         val_loss_sup_3 = 0.0
         unsup_weight = args.unsup_weight * (epoch + 1) / args.num_epochs
         # if epoch >= 300:
-        #     unsup_weight = args.unsup_weight # 注意，在这里直接使得到达上限
+        #     unsup_weight = args.unsup_weight 
         dist.barrier()
 
         for i, data in enumerate(dataloaders['train']):
