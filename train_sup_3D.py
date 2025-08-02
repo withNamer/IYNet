@@ -46,7 +46,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_name', default='P-CT', help='P-CT, LiTS')
     parser.add_argument('--sup_mark', default='100', help='100')
-    parser.add_argument('-b', '--batch_size', default=1, type=int)  # 根本不能使用batch_size=2，直接就oom了
+    parser.add_argument('-b', '--batch_size', default=1, type=int)  
     parser.add_argument('-e', '--num_epochs', default=400, type=int)
     parser.add_argument('-s', '--step_size', default=50, type=int)
     parser.add_argument('-l', '--lr', default=0.05, type=float)
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 
     # L H augmentation
     L_H_aug = T.Compose([T.Resize(cfg['PATCH_SIZE']), 
-                        #  T.ZNormalization(masking_method=cfg['NORMALIZE'])  # 难道是这儿的问题？？？，并不是，好像是能量项的问题
+                        #  T.ZNormalization(masking_method=cfg['NORMALIZE'])  
                         ])
 
     # Train & Val
@@ -188,7 +188,7 @@ if __name__ == '__main__':
             img_train_sup_2 = torch.zeros_like(img_train_sup_1, device='cpu')
             img_train_sup_3 = torch.zeros_like(img_train_sup_1, device='cpu')
             img_train_sup_4 = torch.zeros_like(img_train_sup_1, device='cpu')
-            img_train_sup_numpy = img_train_sup_1.cpu().detach().numpy()  # 注意这个转化到了CPU上，导致速度非常不理想，待会用GPU6尝试修正一下
+            img_train_sup_numpy = img_train_sup_1.cpu().detach().numpy()  
             for j in range(img_train_sup_numpy.shape[0]):
                 img = img_train_sup_numpy[j, 0]
                 img_wavelet = pywt.dwtn(img, args.wavelet_type)
