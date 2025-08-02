@@ -105,7 +105,7 @@ def eval_pixel(mask_list, seg_result_list, num_classes):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--pred_path', default='/mnt/data1/XNetv2/seg_pred/test/P-CT/best_XNetv2_Jc_0.7394')
+    parser.add_argument('--pred_path', default='/mnt/data1/IYNet/seg_pred/test/P-CT/best_MF_Jc_0.7394')
     parser.add_argument('--mask_path', default='/mnt/data1/dataset/P-CT/val/mask')
     parser.add_argument('--if_3D', default=True)
     parser.add_argument('--resize_shape', default=(128, 128))
