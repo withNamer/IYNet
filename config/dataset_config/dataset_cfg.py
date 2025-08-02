@@ -4,45 +4,11 @@ import torchio as tio
 def dataset_cfg(dataet_name):
 
     config = {
-        'CREMI':
-            {
-                'PATH_DATASET': '.../XNetv2/dataset/CREMI',
-                'PATH_TRAINED_MODEL': '.../XNetv2/checkpoints',
-                'PATH_SEG_RESULT': '.../XNetv2/seg_pred',
-                'IN_CHANNELS': 1,
-                'NUM_CLASSES': 2,
-                'MEAN': [0.503902],
-                'STD': [0.110739],
-                'INPUT_SIZE': (128, 128),
-                'PALETTE': list(np.array([
-                    [255, 255, 255],
-                    [0, 0, 0],
-                ]).flatten())
-
-            },
-        'EM':
-            {
-                'PATH_DATASET': '/ldap_shared/home/s_fsw/wavelet/dataset/EM_all',
-                'PATH_TRAINED_MODEL': '/ldap_shared/home/s_fsw/XNetv2/checkpoints/EM',
-                'PATH_SEG_RESULT': '/ldap_shared/home/s_fsw/XNetv2/seg_pred/EM',
-                'IN_CHANNELS': 1,
-                'NUM_CLASSES': 2,
-                # 'MEAN': [0.53475095],
-                'MEAN': [0.55596872],
-                # 'STD': [0.12427514],
-                'STD': [0.12517779],
-                'INPUT_SIZE': (128, 128),
-                'PALETTE': list(np.array([
-                    [255, 255, 255],
-                    [0, 0, 0],
-                ]).flatten())
-
-            },
         'EPFL':
             {
-                'PATH_DATASET': '/ldap_shared/home/s_fsw/wavelet/dataset/EPFL',
-                'PATH_TRAINED_MODEL': '/ldap_shared/home/s_fsw/XNetv2/checkpoints/EPFL',
-                'PATH_SEG_RESULT': '/ldap_shared/home/s_fsw/wavelet/seg_pred',
+                'PATH_DATASET': '/ldap_shared/home/xxx/wavelet/dataset/EPFL',
+                'PATH_TRAINED_MODEL': '/ldap_shared/home/xxx/IYNet/checkpoints/EPFL',
+                'PATH_SEG_RESULT': '/ldap_shared/home/xxx/wavelet/seg_pred',
                 'IN_CHANNELS': 1,
                 'NUM_CLASSES': 2,
                 # 'MEAN': [0.53475095],
@@ -88,9 +54,9 @@ def dataset_cfg(dataet_name):
             },
         'ISIC-2017':
             {
-                'PATH_DATASET': '/ldap_shared/home/s_fsw/wavelet/dataset/ISIC-2017',
-                'PATH_TRAINED_MODEL': '/ldap_shared/home/s_fsw/wavelet/checkpoints/ISIC-2017',
-                'PATH_SEG_RESULT': '/ldap_shared/home/s_fsw/wavelet/seg_pred/semi/ISIC-2017',
+                'PATH_DATASET': '/ldap_shared/home/xxx/wavelet/dataset/ISIC-2017',
+                'PATH_TRAINED_MODEL': '/ldap_shared/home/xxx/wavelet/checkpoints/ISIC-2017',
+                'PATH_SEG_RESULT': '/ldap_shared/home/xxx/wavelet/seg_pred/semi/ISIC-2017',
                 'IN_CHANNELS': 3,
                 'NUM_CLASSES': 2,
                 'MEAN': [0.699002, 0.556046, 0.512134],
@@ -103,10 +69,10 @@ def dataset_cfg(dataet_name):
             },
         'P-CT':
             {
-                'PATH_DATASET': '/ldap_shared/home/s_fsw/wavelet/dataset/P-CT',
+                'PATH_DATASET': '/ldap_shared/home/xxx/wavelet/dataset/P-CT',
                 'PATH_TRAINED_MODEL': '/mnt/data1/fsw_data/P-CT',
                 # 'PATH_TRAINED_MODEL': '/mnt/data1/fsw_code/checkpoints',
-                'PATH_SEG_RESULT': '/ldap_shared/home/s_fsw/wavelet/seg_pred',
+                'PATH_SEG_RESULT': '/ldap_shared/home/xxx/wavelet/seg_pred',
                 'IN_CHANNELS': 1,
                 'NUM_CLASSES': 2,
                 'NORMALIZE': tio.ZNormalization.mean,
@@ -118,9 +84,9 @@ def dataset_cfg(dataet_name):
             },
         'LA':
             {
-                'PATH_DATASET': '/ldap_shared/home/s_fsw/wavelet/dataset/LA',
-                'PATH_TRAINED_MODEL': '/ldap_shared/home/s_fsw/wavelet/checkpoints',
-                'PATH_SEG_RESULT': '/ldap_shared/home/s_fsw/wavelet/seg_pred',
+                'PATH_DATASET': '/ldap_shared/home/xxx/wavelet/dataset/LA',
+                'PATH_TRAINED_MODEL': '/ldap_shared/home/xxx/wavelet/checkpoints',
+                'PATH_SEG_RESULT': '/ldap_shared/home/xxx/wavelet/seg_pred',
                 'IN_CHANNELS': 1,
                 'NUM_CLASSES': 2,
                 'NORMALIZE': tio.ZNormalization.mean,
@@ -131,21 +97,6 @@ def dataset_cfg(dataet_name):
                 'NUM_SAMPLE_VAL': 8,
                 'QUEUE_LENGTH': 48
             },
-        'LiTS':
-            {
-                'PATH_DATASET': '.../XNetv2/dataset/LiTS',
-                'PATH_TRAINED_MODEL': '.../XNetv2/checkpoints',
-                'PATH_SEG_RESULT': '.../XNetv2/seg_pred',
-                'IN_CHANNELS': 1,
-                'NUM_CLASSES': 3,
-                'NORMALIZE': tio.ZNormalization.mean,
-                'PATCH_SIZE': (112, 112, 32),
-                'PATCH_OVERLAP': (56, 56, 16),
-                'NUM_SAMPLE_TRAIN': 8,
-                'NUM_SAMPLE_VAL': 12,
-                'QUEUE_LENGTH': 48
-            },
-
     }
 
     return config[dataet_name]
