@@ -195,7 +195,7 @@ class Fusion_Attention_M2(nn.Module):
 
         # m_batchsize, C, height, width = x.size()
 
-        # x_query1 = self.Attention_query1(x)     # 这里做一个自注意力的事情怎么样？
+        # x_query1 = self.Attention_query1(x)     
         # x_key1 = self.Attention_key1(x)
         
         # proj_query1 = x_query1.view(m_batchsize, C, -1)
@@ -412,7 +412,7 @@ class MFwaveNet2(nn.Module):
         # RS_d5 = self.RS_Up5(RS_x5)
         # RS_d5 = torch.cat((R_x4, S_x4, RS_d5, RS_x4, M_x4), dim=1)  
         RS_d5 = self.RS_Up5(RS_d5)
-        RS_d5 = torch.cat((R_x4, S_x4, RS_d5, RS_x4_fusion, M_x4), dim=1)  # 或者说在这里，不需要M_x4过来了
+        RS_d5 = torch.cat((R_x4, S_x4, RS_d5, RS_x4_fusion, M_x4), dim=1) 
         RS_d5 = self.RS_Up_conv5(RS_d5)
 
         RS_d4 = self.RS_Up4(RS_d5)
